@@ -8,22 +8,19 @@ class SebhaTab extends StatefulWidget {
 }
 
 class _SebhaTabState extends State<SebhaTab> {
-  int counter = 0;
+  int counter = 0; String tasbeh = "سبحان الله";
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(children: [
+        Spacer(),
         Center(
           child: Column(
             children: [
               SizedBox(
-                height: 30,
+                height: 40,
               ),
-              Image.asset(
-                  'assets/images/head of seb7a.png',
-                  height: 80,
-                ),
               RotationTransition(
                   turns: new AlwaysStoppedAnimation(counter / 360),
                   child: Image.asset(
@@ -56,10 +53,14 @@ class _SebhaTabState extends State<SebhaTab> {
                   child: TextButton(
                     onPressed: () {
                       counter++;
+                      if(counter==30)
+                        {
+                          counter=0;
+                          tasbeh = 'الحمدلله';
+                        }
                       setState(() {});
                     },
-                    child: Text(
-                      "سبحان الله",
+                    child: Text('$tasbeh',
                       style: TextStyle(fontSize: 25, color: Color(0xffffffff)),
                     ),
                   )),

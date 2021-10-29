@@ -11,7 +11,8 @@ class HadethItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Navigator.pushNamed(context, HadethDetails.route_name);
+        Navigator.pushNamed(context, HadethDetails.route_name,
+            arguments: HadethData(index, hadethName));
       },
       child: Center(
         child: Container(

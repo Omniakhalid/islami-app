@@ -3,14 +3,13 @@ import 'package:islami/quran/SuraDetails.dart';
 
 class QuranItem extends StatelessWidget {
   int index;String suraName;
-
   QuranItem(this.index, this.suraName);
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Navigator.pushNamed(context, SuraDetails.route_name);
+        Navigator.pushNamed(context, SuraDetails.route_name,
+        arguments: SuraData(index, suraName));
       },
       child: Row(
         children: [
