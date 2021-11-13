@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SebhaTab extends StatefulWidget {
@@ -8,66 +9,86 @@ class SebhaTab extends StatefulWidget {
 }
 
 class _SebhaTabState extends State<SebhaTab> {
-  int counter = 0; String tasbeh = "سبحان الله";
+  int counter = 0, index = 0;
+  static const List tasbeh = [
+    "سبحان الله",
+    "الحمدلله",
+    "لا إله إلا الله",
+    "الله اكبر",
+    ""
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Column(children: [
-        Spacer(),
+      margin: EdgeInsets.symmetric(vertical: 40).add(EdgeInsets.only(top: 20)),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+          children: [
         Center(
           child: Column(
             children: [
-              SizedBox(
-                height: 40,
-              ),
               RotationTransition(
                   turns: new AlwaysStoppedAnimation(counter / 360),
                   child: Image.asset(
                     'assets/images/body of seb7a.png',
-                    height: 160,
+                    height: MediaQuery.of(context).size.height * 0.2,
                   )),
               SizedBox(
-                height: 30,
+                height: 10,
               ),
               Text(
                 'عدد التسبيحات',
-                style: TextStyle(fontSize: 25, color: Color(0xff4f493c)),
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Color(0xff4f493c),
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 10,
               ),
               Container(
+                margin: EdgeInsets.only(top: 10),
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
+                    borderRadius: BorderRadius.circular(25),
                     color: Color(0xffc7b295)),
-                margin: EdgeInsets.only(top: 20),
                 padding: EdgeInsets.all(15),
                 child: Text(
                   counter.toString(),
-                  style: TextStyle(fontSize: 25, color: Color(0xff000000)),
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xff000000)),
                 ),
               ),
+              SizedBox(
+                height: 10,
+              ),
               Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30.0),
+                  margin: EdgeInsets.only(top: 10),                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(35),
                       color: Color(0xffb6925f)),
-                  margin: EdgeInsets.only(top: 30),
                   child: TextButton(
                     onPressed: () {
                       counter++;
-                      if(counter==30)
-                        {
-                          counter=0;
-                          tasbeh = 'الحمدلله';
-                        }
+                      if (counter == 34) {
+                        index++;
+                        counter = 0;
+                        if (index == tasbeh.length - 1) index = 0;
+                      }
                       setState(() {});
                     },
-                    child: Text('$tasbeh',
-                      style: TextStyle(fontSize: 25, color: Color(0xffffffff)),
+                    child: Text(
+                      '${tasbeh[index]}',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
                     ),
                   )),
             ],
           ),
         ),
-        Expanded(child: Container())
       ]),
     );
   }
