@@ -58,31 +58,31 @@ class HadethTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         child: Column(
-      children: [
-        Center(
-          child: Image.asset('assets/images/hadeth_logo.png',height: MediaQuery.of(context).size.height * 0.2,),
-        ),
-        Divider(
-          thickness: 2,
-          color: Color(0xffb6925f),
-        ),
-        Center(
-          child: Text(
-            'الاحاديث',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-          ),
-        ),
-        Divider(
-          thickness: 2,
-          color: Color(0xffb6925f),
-        ),
-        Expanded(child: ListView.builder(
-            itemCount: hadeth_list.length,
-            itemBuilder: (context,index){
-              return HadethItem(index,hadeth_list[index]);
-            }
-        ))
-      ],
-    ));
+          children: [
+            Center(
+              child: Image.asset('assets/images/hadeth_logo.png',height: MediaQuery.of(context).size.height * 0.2,),
+            ),
+            Divider(
+              thickness: 2,
+              color: Color(0xffb6925f),
+            ),
+            Center(
+              child: Text(
+                'الاحاديث',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+            ),
+            Divider(
+              thickness: 2,
+              color: Color(0xffb6925f),
+            ),
+            Expanded(child: ListView.builder(
+                itemCount: hadeth_list.length,
+                itemBuilder: (context,index){
+                  return HadethItem(index,hadeth_list[index]);
+                }
+            ))
+          ],
+        ));
   }
 }

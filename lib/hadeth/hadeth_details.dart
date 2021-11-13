@@ -49,59 +49,59 @@ class _HadethDetailsState extends State<HadethDetails> {
             margin: EdgeInsets.symmetric(vertical: 30, horizontal: 20).add(EdgeInsets.only(bottom: 10)),
             child: a7adeth.isEmpty
                 ? Center(
-                    child: CircularProgressIndicator(color: Color(0xffb6925f)),
-                  )
+              child: CircularProgressIndicator(color: Color(0xffb6925f)),
+            )
                 : Column(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.only(top: 10),
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                              width: 2,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                        alignment: Alignment.center,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              '${args.hadethName}',
-                              style:
-                                  TextStyle(fontSize: 24,fontWeight: FontWeight.bold, color: Colors.black),
-                            ),
-                          ],
-                        ),
+              children: [
+                Container(
+                  padding: EdgeInsets.only(top: 10),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(
+                        width: 2,
+                        color: Colors.black,
                       ),
-                      Expanded(
-                        child: ListView.builder(
-                          itemBuilder: (buildContext, index) {
-                            return Container(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  a7adeth[index],
-                                  style: TextStyle(fontSize: 18),
-                                  textDirection: TextDirection.rtl,
-                                  //textAlign: TextAlign.center,
-                                ),
-                              ),
-                            );
-                          },
-                          itemCount: a7adeth.length,
-                        ),
+                    ),
+                  ),
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        '${args.hadethName}',
+                        style:
+                        TextStyle(fontSize: 24,fontWeight: FontWeight.bold, color: Colors.black),
                       ),
                     ],
                   ),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    itemBuilder: (buildContext, index) {
+                      return Container(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            a7adeth[index],
+                            style: TextStyle(fontSize: 18),
+                            textDirection: TextDirection.rtl,
+                            //textAlign: TextAlign.center,
+                          ),
+                        ),
+                      );
+                    },
+                    itemCount: a7adeth.length,
+                  ),
+                ),
+              ],
+            ),
           ),
         ));
   }
 
   void load_hadeth_details(int index) async {
     String file_content =
-        await rootBundle.loadString('assets/hadeth_files/h${index + 1}.txt');
+    await rootBundle.loadString('assets/hadeth_files/h${index + 1}.txt');
     List<String> verses = file_content.split('\n');
     verses.removeAt(0);
     this.a7adeth = verses;
