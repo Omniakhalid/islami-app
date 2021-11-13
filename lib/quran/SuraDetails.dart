@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -15,7 +14,8 @@ class _SuraDetailsState extends State<SuraDetails> {
   @override
   Widget build(BuildContext context) {
     var args = ModalRoute.of(context)?.settings.arguments as SuraData;
-    load_sura_details(args.suraIndex);
+    if(ayat.isEmpty){
+    load_sura_details(args.suraIndex);}
     return Container(
         decoration: BoxDecoration(
             image: DecorationImage(
@@ -23,6 +23,9 @@ class _SuraDetailsState extends State<SuraDetails> {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
+            iconTheme: IconThemeData(color: Colors.black),
+            systemOverlayStyle:
+            SystemUiOverlayStyle(statusBarIconBrightness: Brightness.light),
             title: Text(
               'إسلامي',
               style: TextStyle(
@@ -36,18 +39,27 @@ class _SuraDetailsState extends State<SuraDetails> {
           ),
           body: Container(
             decoration: BoxDecoration(
-              color: Color.fromRGBO(255, 255, 255, 0.5),
+              gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors:[
+                    Colors.white.withOpacity(0.7),
+                    Colors.white,
+                  ]
+              ),
               borderRadius: BorderRadius.circular(24),
             ),
-            margin: EdgeInsets.symmetric(vertical: 48, horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            margin: EdgeInsets.symmetric(vertical: 30, horizontal: 20).add(EdgeInsets.only(bottom: 10)),
+
             child: ayat.isEmpty
                 ? Center(child: CircularProgressIndicator(color: Color(0xffb6925f)),)
                 : Column(
                   children: [
-                    Container(padding: EdgeInsets.only(top: 15),
+                    Container(padding: EdgeInsets.only(top: 10),
                       decoration: BoxDecoration(
                           border: Border(
-                            bottom: BorderSide(width: 2,color: Color(0xffb6925f),),
+                            bottom: BorderSide(width: 2,color: Colors.black),
                           ),
                       ),
                       alignment: Alignment.center,
@@ -55,10 +67,9 @@ class _SuraDetailsState extends State<SuraDetails> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            '${args.suraName+'  '}',
-                            style: TextStyle(fontSize: 24, color: Colors.black),
+                            '${args.suraName}',
+                            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
                           ),
-                          Icon(Icons.play_circle_fill,color: Colors.black,)
                         ],
                       ),
                     ),
@@ -70,8 +81,9 @@ class _SuraDetailsState extends State<SuraDetails> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
                                   ayat[index],
+                                  textDirection: TextDirection.rtl,
                                   style: TextStyle(fontSize: 18),
-                                  textAlign: TextAlign.center,
+                                  //textAlign: TextAlign.center,
                                 ),
                               ),
                             );
@@ -98,6 +110,5 @@ class _SuraDetailsState extends State<SuraDetails> {
 class SuraData {
   String suraName;
   int suraIndex;
-
   SuraData(this.suraIndex, this.suraName);
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:islami/hadeth/hadeth_tab.dart';
 import 'package:islami/quran/quran_tab.dart';
 import 'package:islami/radio/radio_tab.dart';
@@ -22,6 +23,9 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarIconBrightness: Brightness.light,
+          ),
           title: Text('إسلامي',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30,color: Colors.black),),
           elevation: 0,
           backgroundColor: Colors.transparent,
