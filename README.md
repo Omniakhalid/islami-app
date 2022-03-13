@@ -1,3 +1,1 @@
 # islami
-Uploading quran app.mp4…
-![Uploading quran app.gif…]()
